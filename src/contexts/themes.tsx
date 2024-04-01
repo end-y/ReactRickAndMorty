@@ -21,7 +21,7 @@ const ThemeProvider:FC<ThemeProviderProps> = ({ children }) => {
   const [darkMode, setDarkMode] = useState<Mode>("light");
 
   const toggleTheme = () => {
-    setDarkMode(prevMode => prevMode == "light" ? "dark" : "light");
+    setDarkMode(prevMode => prevMode === "light" ? "dark" : "light");
   };
   const colors = themes[darkMode] as Colors
   const themeContextValue: ThemeContextType = {
