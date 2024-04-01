@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"); 
+.App {
+  margin: 0;
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  flex-direction:column;
+}
+p{
+  margin: 0;
+  padding: 0;
+}
