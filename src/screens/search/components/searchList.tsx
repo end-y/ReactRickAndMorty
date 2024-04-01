@@ -33,7 +33,6 @@ const SearchList:FC<SearchListProps> = ({
         }else if (event.key === 'ArrowUp') {
             setTab((prevIndex) => Math.max(prevIndex - 1, 0));
         }else if(event.key === "Enter"){
-            const isSelected = result.map(e => e.id).includes(items[tab]?.id) ?? false
             handleChange(result[tab]);
         }
         if(tab >= 0 && event.key !== "Enter"){
