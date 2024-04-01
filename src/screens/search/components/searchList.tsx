@@ -34,7 +34,7 @@ const SearchList:FC<SearchListProps> = ({
             setTab((prevIndex) => Math.max(prevIndex - 1, 0));
         }else if(event.key === "Enter"){
             const isSelected = result.map(e => e.id).includes(items[tab]?.id) ?? false
-            handleChange(!isSelected, result[tab]);
+            handleChange(result[tab]);
         }
         if(tab >= 0 && event.key !== "Enter"){
             ref.current && (ref.current as any).scrollIntoView({ behavior: 'smooth' })
@@ -48,11 +48,11 @@ const SearchList:FC<SearchListProps> = ({
     // bu iki öğeye de bakılması gerekiyor
     // eslint-disable-next-line
     }, [tab, items]);
-    const handleChange = (status:boolean, item:Result) => {
+    const handleChange = ( item:Result) => {
         const isExisting = items.find((existingItem: Result) => existingItem.id === item.id);
-        if (isExisting && status) {
+        if (isExisting) {
             dispatch({ type: 'REMOVE', payload: item });
-        } else if (!isExisting && status) {
+        } else  {
             dispatch({ type: 'ADD', payload: item });
         }
     }
@@ -71,8 +71,8 @@ const SearchList:FC<SearchListProps> = ({
                 return(
                     <div className={styles.cardCharacter} style={i !== data.results.length-1 ? { borderBottom:`1.5px solid ${colors.borderColor}`} : {}}>
                         <div style={{position:"relative"}}>
+                            <input checked={items.some(e => e.id === item.id)} onChange={(e) => handleChange(item)} style={{marginInline:10}} type={"checkbox"} />
                             {tab === i && <div ref={ref} className={styles.cardSelect}></div>}
-                            <input checked={items.some(e => e.id === item.id)} onChange={(e) => handleChange(e.target.checked, item)} style={{marginInline:10}} type={"checkbox"} />
                         </div>
                         <img alt={"image"+i} src={item.image} className={styles.cardImage} width={50} height={50} />
                         <div>
